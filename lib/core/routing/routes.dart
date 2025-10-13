@@ -1,0 +1,5 @@
+class Routes {
+  static const String onBoarding = '/';
+  static const String loginScreen = '/loginScreen';
+
+}
