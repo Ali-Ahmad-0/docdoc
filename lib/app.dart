@@ -1,9 +1,13 @@
-import 'package:docdoc/features/onboarding/onboarding_screen.dart';
+import 'package:docdoc/core/routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'core/routing/app_router.dart';
+import 'core/themes/colors.dart';
+
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AppRouter appRouter;
+  const MyApp({super.key, required this.appRouter});
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +15,16 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-
-      // Use builder only if you need to use library outside ScreenUtilInit context
-      child: const OnboardingScreen(),
+      child: MaterialApp(
+        title: 'DocDoc',
+        theme: ThemeData(
+          primaryColor: ColorsManager().mainColorBlue,
+          scaffoldBackgroundColor: Colors.white,
+        ),
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: appRouter.generateRoute,
+        initialRoute: Routes.onBoardingScreen,
+      ),
     );
   }
 }

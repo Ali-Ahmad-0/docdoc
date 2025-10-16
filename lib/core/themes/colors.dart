@@ -6,5 +6,5 @@ class ColorsManager {
   final Color darkgrey = Color(0xff242424);
   final Color grey30 = Color(0xffEDEDED);
   final Color grey40 = Color(0xffE0E0E0);
-  
+   Color grey70 = Color(0xff757575);
 }
