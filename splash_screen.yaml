@@ -1,0 +1,100 @@
+flutter_native_splash:
+  # This package generates native code to customize Flutter's default white native splash screen
+  # with background color and splash image.
+  # Steps to make this work:
+  # 1. Customize the parameters below.
+  # 2. run the following command in the terminal:
+  # dart run flutter_native_splash:create
+  # or if you place this not in pubspec.yaml and not in flutter_native_splash.yaml:
+  # dart run flutter_native_splash:create -p ../your-filepath.yaml
+  # 3. voila, done!
+
+  # NOTES:
+  # - in case you got some trouble, cleaning up flutter project might help:
+  # flutter clean ; flutter pub get
+  # - To restore Flutter's default white splash screen, run the following command in the terminal:
+  # dart run flutter_native_splash:remove
+  # or if you place this not in pubspec.yaml and not in flutter_native_splash.yaml:
+  # dart run flutter_native_splash:remove -p ../your-filepath.yaml
+
+  # IMPORTANT NOTE: These parameter do not affect the configuration of Android 12 and later, which
+  # handle splash screens differently that prior versions of Android.  Android 12 and later must be
+  # configured specifically in the android_12 section below, at the very end.
+
+  #======================================================================
+  
+  # uncomment this if you want to disable this package for specific platform:
+  # android: false
+  # ios: false
+  # web: false
+  
+  #======================================================================
+
+  #! FOR ALL PLATFORM, except Android 12+:
+
+  # general color for all platform (except android 12+):
+  # see there only 2 lines in all parameters that marked as [required], so others
+  # remain optional. NOTE that if you specify the [required] color, then you cant 
+  # use the [required] background_image in the next section. the reverse is true.
+  # select one, they cant work together.
+  color: "#ffffff" 
+  #color_dark: "#0F1629"
+
+  image:                assets/images/Splash.png
+  #image_dark:          assets/splash_logo_dark.png
+
+  #branding:      assets/saber_logo_light.png
+  #branding_dark: assets/saber_logo_dark.png
+  # platform-specific branding. will override general branding if active:
+  #branding_android:      assets/brand-android.png
+  #branding_dark_android: assets/dart_dark-android.png
+  #branding_ios:          assets/brand-ios.png
+  #branding_dark_ios:     assets/dart_dark-ios.png
+  #branding_web:          assets/brand-web.gif
+  #branding_dark_web:     assets/dart_dark-web.gif
+
+  # branding position:
+  # you can use bottom, bottomRight, and bottomLeft. The default values is 
+  # bottom if not specified or specified something else.
+  #branding_mode: bottom                # default bottom
+  #branding_bottom_padding: 24          # default 0
+  #branding_bottom_padding_android: 24  # default 0
+  #branding_bottom_padding_ios: 24      # default 0
+  # branding bottom padding web is not available yet.
+
+  # The screen orientation can be set in Android with the android_screen_orientation parameter.
+  # Valid parameters can be found here:
+  # https://developer.android.com/guide/topics/manifest/activity-element#screen
+  #android_screen_orientation: sensorLandscape
+
+  # hide notif bar on android. ios already hides it by default. 
+  # Has no effect in web since web has no notification bar.
+  fullscreen: true                # default false
+  # if you dont want to hide notif bar, for android just set this to false,
+  # but for ios, add this to your flutter main():
+  # WidgetsFlutterBinding.ensureInitialized(); 
+  # SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top], );
+    
+  #! extra note for IOS:
+  # If you have changed the name(s) of your info.plist file(s), you can specify the filename(s)
+  # with the info_plist_files parameter.  Remove only the # characters in the three lines below,
+  # do not remove any spaces:
+  #info_plist_files:
+  #  - 'ios/Runner/Info-Debug.plist'
+  #  - 'ios/Runner/Info-Release.plist'
+
+  #========================================================================
+
+  # what we did above won't affect Android 12 and newer at all. they have different
+  # handling concept. visit https://developer.android.com/guide/topics/ui/splash-screen
+  
+  #! ANDROID 12+ configuration:
+  android_12:
+    color: "#ffffff" 
+    #color_dark: "#0F1629"
+
+    image:                assets/images/splash_logo.png
+    # image_dark:          assets/logo_splash12_dark.png
+
+    # branding:      assets/images/Docdoc.png
+    # branding_dark: assets/saber_logo_dark.png

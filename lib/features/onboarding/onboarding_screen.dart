@@ -1,3 +1,4 @@
+import 'package:docdoc/core/routing/routes.dart';
 import 'package:docdoc/core/themes/styles.dart';
 import 'package:docdoc/features/onboarding/widgets/get_started_button.dart';
 import 'package:docdoc/features/onboarding/widgets/image_and_text_stack.dart';
@@ -16,9 +17,11 @@ class OnboardingScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(height: 32),
               OnboardingLogoandname(),
               SizedBox(height: 40),
               ImageAndTextStack(),
+              SizedBox(height: 18),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 28),
                 child: Column(
@@ -28,8 +31,12 @@ class OnboardingScreen extends StatelessWidget {
                       'Manage and schedule all of your medical appointments easily \nwith Docdoc to get a new experience.',
                       style: AppTextStyles.font13grey400,
                     ),
-                    SizedBox(height: 36),
-                    GetStartedButton(),
+                    SizedBox(height: 32),
+                    GetStartedButton(
+                      text: 'Get Started',
+                      onTap: () =>
+                          Navigator.pushNamed(context, Routes.loginScreen),
+                    ),
                   ],
                 ),
               ),

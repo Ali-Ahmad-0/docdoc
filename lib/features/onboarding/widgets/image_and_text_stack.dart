@@ -16,14 +16,14 @@ class ImageAndTextStack extends StatelessWidget {
               colors: [Colors.white, Colors.white.withAlpha(0)],
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
-              stops: [0.14, 0.3],
+              stops: [0.15, 0.3],
             ),
           ),
           child: Image.asset('assets/images/onboarding_doctor.png'),
         ),
         Positioned(
           bottom: 20,
-          //top: 0,
+
           left: 0,
           right: 0,
           child: Text(
