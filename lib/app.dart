@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         title: 'DocDoc',
         theme: ThemeData(
           primaryColor: ColorsManager.mainColorBlue,
-          scaffoldBackgroundColor: Colors.white,
+          scaffoldBackgroundColor: ColorsManager.white10,
         ),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: appRouter.generateRoute,

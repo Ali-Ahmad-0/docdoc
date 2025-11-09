@@ -1,12 +1,10 @@
-
 import 'package:docdoc/core/themes/colors.dart';
-import 'package:docdoc/core/themes/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class GetStartedButton extends StatelessWidget {
-  const GetStartedButton({super.key, required this.text, required this.onTap});
-  final String text;
+class CustomButton extends StatelessWidget {
+  const CustomButton({super.key,  required this.onTap, required this.widget});
+  final Widget widget;
   final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
@@ -27,7 +25,7 @@ class GetStartedButton extends StatelessWidget {
         ),
         fixedSize: WidgetStateProperty.all(Size(double.infinity, 50.h)),
       ),
-      child: Text(text, style: AppTextStyles.font16whiteSemiBold),
+      child: widget,
     );
   }
 }

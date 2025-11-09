@@ -9,14 +9,20 @@ class AppTextformfield extends StatelessWidget {
     this.isObsecured,
     required this.hintText,
     this.suffextIcons,
+    this.controller,
+    required this.validator,
   });
   final bool? isObsecured;
   final String? hintText;
   final Widget? suffextIcons;
+  final TextEditingController? controller;
+  final Function(String?) validator;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (value) => validator(value),
+      controller: controller,
       cursorColor: Colors.black,
       cursorOpacityAnimates: true,
 
@@ -26,8 +32,15 @@ class AppTextformfield extends StatelessWidget {
         fillColor: ColorsManager.white10,
         contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
         isDense: true,
-        hintText: hintText,
+        labelText: hintText,
+        labelStyle: AppTextStyles.font14MediumGrey,
         hintStyle: AppTextStyles.font14MediumGrey,
+
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+
+          borderSide: BorderSide(color: Colors.red, width: 1.3),
+        ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide(

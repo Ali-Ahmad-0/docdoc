@@ -1,6 +1,6 @@
 import 'package:docdoc/core/routing/routes.dart';
 import 'package:docdoc/core/themes/styles.dart';
-import 'package:docdoc/features/onboarding/widgets/get_started_button.dart';
+import 'package:docdoc/core/widgets/custom_button.dart';
 import 'package:docdoc/features/onboarding/widgets/image_and_text_stack.dart';
 import 'package:docdoc/features/onboarding/widgets/onboarding_logoandname.dart';
 import 'package:flutter/material.dart';
@@ -32,8 +32,11 @@ class OnboardingScreen extends StatelessWidget {
                       style: AppTextStyles.font13grey400,
                     ),
                     SizedBox(height: 32),
-                    GetStartedButton(
-                      text: 'Get Started',
+                    CustomButton(
+                      widget: Text(
+                        'Get Started',
+                        style: AppTextStyles.font16whiteSemiBold,
+                      ),
                       onTap: () =>
                           Navigator.pushNamed(context, Routes.loginScreen),
                     ),
