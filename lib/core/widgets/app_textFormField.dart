@@ -10,14 +10,14 @@ class AppTextformfield extends StatelessWidget {
     required this.hintText,
     this.suffextIcons,
     this.controller,
-    required this.validator,
+    required this.validator, this.hasPhoneNumber,
   });
   final bool? isObsecured;
   final String? hintText;
   final Widget? suffextIcons;
   final TextEditingController? controller;
   final Function(String?) validator;
-
+  final TextInputType? hasPhoneNumber;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -25,7 +25,7 @@ class AppTextformfield extends StatelessWidget {
       controller: controller,
       cursorColor: Colors.black,
       cursorOpacityAnimates: true,
-
+      keyboardType: hasPhoneNumber,
       obscureText: isObsecured ?? false,
       decoration: InputDecoration(
         filled: true,

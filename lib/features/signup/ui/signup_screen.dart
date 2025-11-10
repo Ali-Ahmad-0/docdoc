@@ -1,19 +1,18 @@
 import 'package:docdoc/core/themes/styles.dart';
 import 'package:docdoc/core/widgets/custom_button.dart';
-import 'package:docdoc/features/login/logic/cubit/login_cubit.dart';
-import 'package:docdoc/features/login/logic/cubit/login_state.dart';
-
-import 'package:docdoc/features/login/ui/widgets/dont_have_account.dart';
-import 'package:docdoc/features/login/ui/widgets/email_and_password.dart';
-import 'package:docdoc/features/login/ui/widgets/login_bloc_listener.dart';
 import 'package:docdoc/features/login/ui/widgets/remember_me_row.dart';
 import 'package:docdoc/features/login/ui/widgets/terms_and_condition.dart';
+import 'package:docdoc/features/signup/logic/cubit/signup_cubit.dart';
+import 'package:docdoc/features/signup/logic/cubit/signup_state.dart';
+import 'package:docdoc/features/signup/ui/widgets/already_have_account.dart';
+import 'package:docdoc/features/signup/ui/widgets/signup_bloc_listener.dart';
+import 'package:docdoc/features/signup/ui/widgets/signup_text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class SignupScreen extends StatelessWidget {
+  SignupScreen({super.key});
 
   final fromKey = GlobalKey<FormState>();
 
@@ -32,51 +31,48 @@ class LoginScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 50.h),
-                Text('Welcome Back ', style: AppTextStyles.font24Bold),
+                Text('Create Account', style: AppTextStyles.font24Bold),
                 SizedBox(height: 8.h),
                 Text(
-                  'We\'re excited to have you back, can\'t wait to see what you\'ve been up to since you last logged in.',
+                  'Sign up now and start exploring all that our app has to offer. We\'re excited to welcome you to our community!',
                   style: AppTextStyles.font14regular.copyWith(
                     wordSpacing: 2.sp,
                   ),
                 ),
-                SizedBox(height: 36.h),
-                Column(children: [EmailAndPassword()]),
-                SizedBox(height: 16.h),
-                RememberMeRow(),
-                SizedBox(height: 32.h),
+                SizedBox(height: 17.h),
+                SignupTextFields(),
+                SizedBox(height: 24.h),
                 CustomButton(
                   onTap: () {
-                    validateThenDoLogin(context);
+                    validateThenDoSignup(context);
                   },
-                  widget: BlocBuilder<LoginCubit, LoginState>(
-                    // TODO listen when
+                  widget: BlocBuilder<SignupCubit, SignupState>(
                     builder: (context, state) {
                       return state.when(
                         initial: () => Text(
-                          'Login',
+                          'Create Account',
                           style: AppTextStyles.font16whiteSemiBold,
                         ),
                         loading: () => const CircularProgressIndicator(
                           color: Colors.white,
                         ),
-                        success: (loginResponse) => Text(
-                          'Login',
+                        success: (SignupResponse) => Text(
+                          'Create Account',
                           style: AppTextStyles.font16whiteSemiBold,
                         ),
                         failure: (error) => Text(
-                          'Login',
+                          'Create Account',
                           style: AppTextStyles.font16whiteSemiBold,
                         ),
                       );
                     },
                   ),
                 ),
-                SizedBox(height: 174.h),
+                SizedBox(height: 24.h),
                 TermsAndCondition(),
                 SizedBox(height: 24.h),
-                DontHaveAccount(),
-                LoginBlocListener(),
+                AlreadyHaveAccount(),
+                SignupBlocListener(),
               ],
             ),
           ),
@@ -85,9 +81,9 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  void validateThenDoLogin(BuildContext context) {
-    if (context.read<LoginCubit>().formkey.currentState!.validate()) {
-      context.read<LoginCubit>().emitLogingState();
+  void validateThenDoSignup(BuildContext context) {
+    if (context.read<SignupCubit>().formkey.currentState!.validate()) {
+      context.read<SignupCubit>().emitSignupgState();
     }
   }
 }
